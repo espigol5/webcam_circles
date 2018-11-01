@@ -12,11 +12,11 @@
 //constants
 const int GAUSSIAN_BLUR_SIZE = 7;
 const double GAUSSIAN_BLUR_SIGMA = 2; 
-const double CANNY_EDGE_TH = 150;
+const double CANNY_EDGE_TH = 100;
 const double HOUGH_ACCUM_RESOLUTION = 2;
-const double MIN_CIRCLE_DIST = 40;
-const double HOUGH_ACCUM_TH = 70;
-const int MIN_RADIUS = 20;
+const double MIN_CIRCLE_DIST = 60;
+const double HOUGH_ACCUM_TH = 75;
+const int MIN_RADIUS = 70;
 const int MAX_RADIUS = 100;
 
 int main(int argc, char *argv[]) 
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
         cv::GaussianBlur( gray_image, gray_image, cv::Size(GAUSSIAN_BLUR_SIZE, GAUSSIAN_BLUR_SIZE), GAUSSIAN_BLUR_SIGMA );
 
         //Apply the Hough Transform to find the circles
-       cv::HoughCircles( gray_image, circles, CV_HOUGH_GRADIENT, 2, 60.0 , 150, HOUGH_ACCUM_TH, 60, 100);
+       cv::HoughCircles( gray_image, circles, CV_HOUGH_GRADIENT, HOUGH_ACCUM_RESOLUTION, MIN_CIRCLE_DIST, CANNY_EDGE_TH, HOUGH_ACCUM_TH, MIN_RADIUS, MAX_RADIUS);
         
         //draw circles on the image      
         for(unsigned int ii = 0; ii < circles.size(); ii++ )
