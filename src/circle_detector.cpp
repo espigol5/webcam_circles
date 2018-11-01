@@ -92,7 +92,7 @@ int main(int argc, char *argv[])
         
     //********************************************************************
     
-        //show image modificat
+        //show image
         cv::imshow("Output Window", image);
 	    
 	//Waits 30 millisecond to check if 'q' key has been pressed. If so, breaks the loop. Otherwise continues.
