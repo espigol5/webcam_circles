@@ -6,9 +6,9 @@ Circle detection from online webcam images
 
 És una tècnica per distingir figures amb una forma particular en una imatge, com serien cercles, el·lipses, línies, etc. Les quals poden tenir una representació matemàtica.
 
-Canvi de paràmetres:
+# Canvi de paràmetres:
 
-circles: en aquest cas la figura matemàtica que es volia detectar eren cercles, per això es genera un vector de detector de cercles (cv.CV_32FC3)
+circles: en aquest cas la figura matemàtica que es volia detectar eren cercles, per això es genera un vector de detector de cercles (std::vector<cv::Vec3f> circles;)
 
 GAUSSIAN_BLUR_SIZE: ens determina la mida de la matriu gaussiana que gestiona el soroll en la imatge. Com més elevat menys sensibilitat el soroll que permet evitar detecció de formes errònies.
 
@@ -24,7 +24,8 @@ MIN_RADIUS: és el valor mínim de radi dels cercles que detectarà el programa.
 
 MAX_RADIUS: és el valor màxim de radi dels cercles que detectarà el programa.
 
-Fonts: 
+
+# Fonts: 
 
 https://docs.opencv.org/2.4/modules/imgproc/doc/feature_detection.html
 
