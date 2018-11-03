@@ -9,13 +9,13 @@
 #include <cstdlib>
 #include <vector>
 
-//constants
+//constants gray_image, circles, CV_HOUGH_GRADIENT, HOUGH_ACCUM_RESOLUTION, MIN_CIRCLE_DIST, CANNY_EDGE_TH, HOUGH_ACCUM_TH, 		MIN_RADIUS, MAX_RADIUS
 const int GAUSSIAN_BLUR_SIZE = 7;
 const double GAUSSIAN_BLUR_SIGMA = 2; 
-const double CANNY_EDGE_TH = 100;
+const double CANNY_EDGE_TH = 70;
 const double HOUGH_ACCUM_RESOLUTION = 2;
-const double MIN_CIRCLE_DIST = 60;
-const double HOUGH_ACCUM_TH = 75;
+const double MIN_CIRCLE_DIST = 120;
+const double HOUGH_ACCUM_TH = 85;
 const int MIN_RADIUS = 70;
 const int MAX_RADIUS = 100;
 
@@ -76,7 +76,10 @@ int main(int argc, char *argv[])
         cv::GaussianBlur( gray_image, gray_image, cv::Size(GAUSSIAN_BLUR_SIZE, GAUSSIAN_BLUR_SIZE), GAUSSIAN_BLUR_SIGMA );
 
         //Apply the Hough Transform to find the circles
-       cv::HoughCircles( gray_image, circles, CV_HOUGH_GRADIENT, HOUGH_ACCUM_RESOLUTION, MIN_CIRCLE_DIST, CANNY_EDGE_TH, HOUGH_ACCUM_TH, MIN_RADIUS, MAX_RADIUS);
+       	cv::HoughCircles( gray_image, circles, CV_HOUGH_GRADIENT, HOUGH_ACCUM_RESOLUTION, MIN_CIRCLE_DIST, CANNY_EDGE_TH, HOUGH_ACCUM_TH, 		MIN_RADIUS, MAX_RADIUS);
+
+	cv::Mat imageCanny;
+	cv::Canny(gray_image, imageCanny, 35, 70, 3, false);
         
         //draw circles on the image      
         for(unsigned int ii = 0; ii < circles.size(); ii++ )
@@ -85,7 +88,7 @@ int main(int argc, char *argv[])
             {
                     center = cv::Point(cvRound(circles[ii][0]), cvRound(circles[ii][1]));
                     radius = cvRound(circles[ii][2]);
-                    cv::circle(image, center, 5, cv::Scalar(0,0,255), -1, 8, 0 );// circle center in green
+                    cv::circle(image, center, 5, cv::Scalar(0,255,0), -1, 8, 0 );// circle center in green
                     cv::circle(image, center, radius, cv::Scalar(0,0,255), 3, 8, 0 );// circle perimeter in red
             }
         }      
@@ -94,8 +97,10 @@ int main(int argc, char *argv[])
     
         //show image
         cv::imshow("Output Window", image);
+
+	cv::imshow("Canny", imageCanny);
 	    
 	//Waits 30 millisecond to check if 'q' key has been pressed. If so, breaks the loop. Otherwise continues.
-    	if( (unsigned char)(cv::waitKey(30) & 0xff) == 'q' ) break;
+    	if( (unsigned char)(cv::waitKey(40) & 0xff) == 'q' ) break;
     } 
 }
