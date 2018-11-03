@@ -9,7 +9,7 @@
 #include <cstdlib>
 #include <vector>
 
-//constants gray_image, circles, CV_HOUGH_GRADIENT, HOUGH_ACCUM_RESOLUTION, MIN_CIRCLE_DIST, CANNY_EDGE_TH, HOUGH_ACCUM_TH, 		MIN_RADIUS, MAX_RADIUS
+//constants
 const int GAUSSIAN_BLUR_SIZE = 7;
 const double GAUSSIAN_BLUR_SIGMA = 2; 
 const double CANNY_EDGE_TH = 70;
